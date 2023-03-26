@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+  <title>alexsci.com blog</title>
+  <link>https://alexsci.com/blog/</link>
+  <description>Robert Alexander's Blog</description>
+  <language>en-us</language>
+
+  <item>
+    <title>ChatGPT First Thoughts</title>
+    <link>https://alexsci.com/blog/chatgpt-first-thoughts/</link>
+    <description>I've been seeing lots of buzz about ChatGPT </description>
+    <pubDate>Sun, 26 Mar 2023</pubDate>
+  </item>
+
+</channel>
+
+</rss> 
