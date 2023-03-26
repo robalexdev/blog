@@ -1,0 +1,135 @@
+  <table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+    <script>
+// get all the cells in the grid
+const cells = document.getElementsByTagName("td");
+
+// randomly select between 2 and 30 cells to contain the fire emoji
+const numFire = Math.floor(Math.random() * 29) + 2;
+const fireIndexes = [];
+for (let i = 0; i < numFire; i++) {
+  let index = Math.floor(Math.random() * 64);
+  while (fireIndexes.includes(index)) {
+    index = Math.floor(Math.random() * 64);
+  }
+  fireIndexes.push(index);
+}
+
+// add the fire and water drop emojis to the appropriate cells
+for (let i = 0; i < cells.length; i++) {
+  if (fireIndexes.includes(i)) {
+    cells[i].innerHTML = '🔥';
+  } else {
+    cells[i].innerHTML = '';
+  }
+}
+
+// keep track of how many fire emoji cells are left
+let numFireLeft = numFire;
+
+// listen for the mouseover event on each cell
+for (let i = 0; i < cells.length; i++) {
+  cells[i].addEventListener("mouseover", function() {
+    if (this.innerHTML === '🔥') {
+      this.innerHTML = '💧';
+      numFireLeft--;
+      if (numFireLeft === 0) {
+        // display the fireman or firewoman emoji for two seconds
+        setTimeout(function() {
+          for (let j = 0; j < cells.length; j++) {
+            if (Math.random() < 0.5) {
+              cells[j].innerHTML = '👨‍🚒';
+            } else {
+              cells[j].innerHTML = '👩‍🚒';
+            }
+          }
+          setTimeout(function() {
+            location.reload();
+          }, 2000);
+        }, 500);
+      }
+    }
+  });
+}
+    </script>
