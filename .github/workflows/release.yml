@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Spider and check
-        run: python3 -m http.server & wget https://github.com/filiph/linkcheck/releases/download/3.0.0/linkcheck-3.0.0-linux-x64.tar.gz && tar xvf linkcheck-3.0.0-linux-x64.tar.gz && sleep 2 && ./linkcheck/linkcheck :8000
+        run: python3 -m http.server & wget https://github.com/filiph/linkcheck/releases/download/3.0.0/linkcheck-3.0.0-linux-x64.tar.gz && tar xvf linkcheck-3.0.0-linux-x64.tar.gz && sleep 2 && ./linkcheck/linkcheck -e --skip-file .github/workflows/linkcheck-skip-urls.txt :8000
       
