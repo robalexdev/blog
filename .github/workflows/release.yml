@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Check links with linkcheck
+      - name: Host site
+        run: python3 -m http.server 8080 &
+      - name: Spider and check
         uses: filiph/linkcheck@2.0.23
 
