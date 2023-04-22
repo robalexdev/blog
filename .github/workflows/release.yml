@@ -1,0 +1,13 @@
+name: Release Checks
+
+on:
+  push: {}
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check links with linkcheck
+        uses: filiph/linkcheck@2.0.23
+
