@@ -32,6 +32,14 @@
     <guid isPermaLink="false">20ace332-7d7a-4306-8fab-d8e9de4bca81</guid>
   </item>
 
+  <item>
+    <title>A Mental Model for On-Demand Pricing</title>
+    <link>https://alexsci.com/blog/modeling-on-demand-pricing/</link>
+    <description>A model for thinking about AWS EC2 on-demand and reserved pricing</description>
+    <pubDate>Sun, 07 Apr 2023 00:00:00 GMT</pubDate>
+    <guid isPermaLink="false">c38ec5fe-866c-455b-a7e7-ea2efa7993ca</guid>
+  </item>
+
 </channel>
 
 </rss> 
