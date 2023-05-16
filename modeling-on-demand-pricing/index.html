@@ -330,7 +330,7 @@ span.code {
     Unit-less values can be confusing to deal with, so I'll make up a unit "C" so you know we're talking about unit-less cost.
 
     <p>
-    To get back to actual costs, just multiply by the reserved instance codes.
+    To get back to actual costs, just multiply by the reserved instance cost.
     For example: 3.5 C for t3.median is $66.68 (<code>3.5 C × $19.05 = $66.675</code>) monthly.
     It doesn't matter if those are all on-demand instances, or if some of them are reserved, we've abstracted that away.
 
@@ -462,7 +462,7 @@ N ≈ 228 days</pre>
 
     <p>
     The "all reserved" strategy will reserve the maximum required instances and keep them all running.
-    It's very easy to compute the cost of this strategy, each instance costs 1, and a total of 14 for our example.
+    It's very easy to compute the cost of this strategy, each instance costs 1 C, and a total of 14 C for our example.
 
     <p>
     The "baseline" strategy will reserve instances for the minimum load and will use on-demand instances to auto-scale for the remaining load.
@@ -482,69 +482,69 @@ N ≈ 228 days</pre>
       </thead>
       <tbody>
 
-        <tr><td>24 hrs</td><td class="bad">1.6</td><td>1</td><td>1</td><td>1</td></tr>
-        <tr><td>24 hrs</td><td class="bad">1.6</td><td>1</td><td>1</td><td>1</td></tr>
-        <tr><td>24 hrs</td><td class="bad">1.6</td><td>1</td><td>1</td><td>1</td></tr>
-        <tr><td>24 hrs</td><td class="bad">1.6</td><td>1</td><td>1</td><td>1</td></tr>
-        <tr><td>24 hrs</td><td class="bad">1.6</td><td>1</td><td>1</td><td>1</td></tr>
-        <tr><td>24 hrs</td><td class="bad">1.6</td><td>1</td><td>1</td><td>1</td></tr>
-        <tr><td>24 hrs</td><td class="bad">1.6</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>24 hrs</td><td class="bad">1.6 C</td><td>1 C</td><td>1 C</td><td>1 C</td></tr>
+        <tr><td>24 hrs</td><td class="bad">1.6 C</td><td>1 C</td><td>1 C</td><td>1 C</td></tr>
+        <tr><td>24 hrs</td><td class="bad">1.6 C</td><td>1 C</td><td>1 C</td><td>1 C</td></tr>
+        <tr><td>24 hrs</td><td class="bad">1.6 C</td><td>1 C</td><td>1 C</td><td>1 C</td></tr>
+        <tr><td>24 hrs</td><td class="bad">1.6 C</td><td>1 C</td><td>1 C</td><td>1 C</td></tr>
+        <tr><td>24 hrs</td><td class="bad">1.6 C</td><td>1 C</td><td>1 C</td><td>1 C</td></tr>
+        <tr><td>24 hrs</td><td class="bad">1.6 C</td><td>1 C</td><td>1 C</td><td>1 C</td></tr>
 
         <tr>
           <td>18.5hrs</td>
-          <td class="bad">1.23</td>
-          <td>1</td>
-          <td class="bad">1.23</td>
-          <td>1</td>
+          <td class="bad">1.23 C</td>
+          <td>1 C</td>
+          <td class="bad">1.23 C</td>
+          <td>1 C</td>
         </tr>
         <tr>
           <td>16hrs</td>
-          <td class="bad">1.07</td>
-          <td>1</td>
-          <td class="bad">1.07</td>
-          <td>1</td>
+          <td class="bad">1.07 C</td>
+          <td>1 C</td>
+          <td class="bad">1.07 C</td>
+          <td>1 C</td>
         </tr>
         <tr>
           <td>14hrs</td>
-          <td class="good">0.93</td>
-          <td>1</td>
-          <td class="good">0.93</td>
-          <td class="good">0.93</td>
+          <td class="good">0.93 C</td>
+          <td>1 C</td>
+          <td class="good">0.93 C</td>
+          <td class="good">0.93 C</td>
         </tr>
         <tr>
           <td>12hrs</td>
-          <td class="good">0.81</td>
-          <td>1</td>
-          <td class="good">0.81</td>
-          <td class="good">0.81</td>
+          <td class="good">0.81 C</td>
+          <td>1 C</td>
+          <td class="good">0.81 C</td>
+          <td class="good">0.81 C</td>
         </tr>
         <tr>
           <td>10hrs</td>
-          <td class="good">0.65</td>
-          <td>1</td>
-          <td class="good">0.65</td>
-          <td class="good">0.65</td>
+          <td class="good">0.65 C</td>
+          <td>1 C</td>
+          <td class="good">0.65 C</td>
+          <td class="good">0.65 C</td>
         </tr>
         <tr>
           <td>8hrs</td>
-          <td class="good">0.53</td>
-          <td>1</td>
-          <td class="good">0.53</td>
-          <td class="good">0.53</td>
+          <td class="good">0.53 C</td>
+          <td>1 C</td>
+          <td class="good">0.53 C</td>
+          <td class="good">0.53 C</td>
         </tr>
         <tr>
           <td>5.5hrs</td>
-          <td class="good">0.36</td>
-          <td>1</td>
-          <td class="good">0.36</td>
-          <td class="good">0.36</td>
+          <td class="good">0.36 C</td>
+          <td>1 C</td>
+          <td class="good">0.36 C</td>
+          <td class="good">0.36 C</td>
         </tr>
         <tr>
           <td>Totals</td>
-          <td class="bad">19.98</td>
-          <td>14</td>
-          <td class="good">12.56</td>
-          <td class="good">12.28</td>
+          <td class="bad">19.98 C</td>
+          <td>14 C</td>
+          <td class="good">12.56 C</td>
+          <td class="good">12.28 C</td>
         </tr>
       </tbody>
     </table>
