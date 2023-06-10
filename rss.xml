@@ -40,6 +40,14 @@
     <guid isPermaLink="false">c38ec5fe-866c-455b-a7e7-ea2efa7993ca</guid>
   </item>
 
+  <item>
+    <title>Against HSTS preload</title>
+    <link>https://alexsci.com/blog/hsts-adoption/</link>
+    <description>A review of HSTS and HSTS preload list growth</description>
+    <pubDate>Sat, Jun 10 2023 00:00:00 GMT</pubDate>
+    <guid isPermaLink="false">85d63cac-1f92-4db1-abc2-b6680a4eec70</guid>
+  </item>
+
 </channel>
 
 </rss> 
