@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 
+<!-- validate at https://validator.w3.org/feed/#validate-by-input -->
+
 <channel>
   <title>alexsci.com blog</title>
   <link>https://alexsci.com/blog/</link>
@@ -46,6 +48,14 @@
     <description>A review of HSTS and HSTS preload list growth</description>
     <pubDate>Sat, 10 Jun 2023 00:00:00 GMT</pubDate>
     <guid isPermaLink="false">85d63cac-1f92-4db1-abc2-b6680a4eec70</guid>
+  </item>
+
+  <item>
+    <title>Hacker News Load Spike</title>
+    <link>https://alexsci.com/blog/hn-load-1/</link>
+    <description>How getlocalcert handled getting popular on HN</description>
+    <pubDate>Wed, 12 Jul 2023 00:00:00 GMT</pubDate>
+    <guid isPermaLink="false">ce8b62e4-37c3-4132-bb06-f44e22a39907</guid>
   </item>
 
 </channel>

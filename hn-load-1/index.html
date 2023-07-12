@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline' https://alexsci.goatcounter.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://cdn.jsdelivr.net;"/>
+    <title>Hacker News Load Spike</title>
+    <link rel="alternate" type="application/rss+xml" title="Robert's Technology Blog" href="https://alexsci.com/blog/rss.xml">
+
+    <style>
+
+body {
+  margin: 2em;
+  max-width: 50em;
+  font-size: 1.2em;
+  font-family: sans-serif;
+  background-color: #eee;
+  padding-bottom: 10em;
+  line-height: 1.8rem;
+}
+
+div.title-block > h1 {
+  line-height: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+div.title-block > p{
+  margin: 0;
+}
+
+h2, h3 {
+  margin-top: 5.5em;
+}
+
+sup {
+  font-size: 0.5em;
+}
+
+pre {
+  tab-size: 2;
+  padding: 2em;
+}
+
+td {
+  padding: 0.5em;
+  text-align: left;
+}
+
+td.good {
+  background-color: #cdc;
+}
+
+thead td {
+  font-weight: bold;
+}
+
+tbody td {
+  border: 1px solid #ddd;
+
+}
+
+table {
+  padding-bottom: 3em;
+}
+
+    </style>
+  </head>
+  <body>
+
+    <a href="../">Blog Home</a>
+    <hr>
+
+    <div class="title-block">
+    <h1>Hacker News Load Spikes</h1>
+    <p><i>By <a href="https://www.robalexdev.com">Robert Alexander</a></i></p>
+    <p><i>2023-07-12</i></p>
+    </div>
+
+    <p>
+    Yesterday I 
+    <a href="https://news.ycombinator.com/item?id=36674224">submitted a project</a>
+    to Hacker News (HN) which ended up being
+    <a href="https://news.ycombinator.com/front?day=2023-07-11">ranked 6th</a>
+    for the day.
+    I was excited to see this success, and quite curious to see what sort of load this generated.
+
+    <h2>Marketing Page</h2>
+
+    <p>
+    My submission directly linked to my
+    <a href="https://www.getlocalcert.net/">marketing site's home page</a>,
+    so let's start there.
+
+    <p>
+    I host my static web pages via
+    <a href="https://www.netlify.com/">Netlify</a>
+    since it's so easy to use.
+    The free plan supports 100 GB of data transfer, of which I consumed 4 GB.
+    The site stayed online throughout the day, and I didn't see any complaints from HN users about slowness.
+    Netlify is great for this sort of site.
+
+    <p>
+    I use
+    <a href="https://www.goatcounter.com/">GoatCounter</a>
+    for "privacy-friendly web analytics".
+    Here's the traffic on the marketing site:
+
+    <p>
+    <img src="images/goatcounter-marketing-site.png">
+
+    <p>
+    This is about forty views per vote.
+    I'm uncertain how many users block goatcounter, HN users probably do so much more than average, so actual numbers could be higher.
+    Netlify's built-in analytics should have better data.
+
+    <p>
+    The start of my marketing funnel is around 10,000.
+    Did those viewers drop off, or stick around?
+
+    <h2>Documentation Site</h2>
+
+    <p>
+    My
+    <a href="https://docs.getlocalcert.net/">documentation site</a>
+    is also a static site hosted on Netlify.
+
+    <p>
+    <img src="images/goatcounter-docs-site.png">
+
+    <p>
+    1,100 views; 11% of the marketing site views made it here.
+    That's good, people were interested and continued to read.
+
+    <h2>Console</h2>
+
+    <p>
+    The console is the main application.
+    I don't use goatcounter on my console as I have server-side logs I can use to analyze metrics.
+    Server logs showed load generally stayed below one request per second, but reached 150 RPS very briefly.
+
+    <p>
+    <b>Sign-ups</b>
+
+    <p>
+    How many people signed up?
+    At the 24-hour mark, I had ~200 new accounts; 2% of the marketing site views resulted in a sign-up.
+    I also saw ~450 new DNS zones were created.
+
+    <p>
+    <b>Server Load</b>
+
+    <p>
+    Thankfully my console also stayed healthy through the load spike.
+    I'm currently running on a single
+    <a href="https://m.do.co/c/24f2d5323916">DigitalOcean</a> <small>(affiliate link)</small>
+    $6/month droplet with 1 GB of memory and 1 CPU.
+    Load stayed quite low through the load spike,
+    showing that even the second-cheapest DigitalOcean droplet can easily handle HN-level load spikes.
+    Actual performance will vary based on your application.
+
+    <p>
+    <img src="images/cpu-load.png">
+
+    <p>
+    The console is a server-side rendered Django application with a Postgres database running on the same droplet.
+    I eventually want to switch to managed Postgres, but this configuration can handle many more users, so I'm not in a rush.
+    I did a couple of things to keep the site lightweight, like serving the Bulma CSS framework (30kB) from a CDN.
+    NoScript users may have noticed that all the getlocalcert sites work without enabling JavaScript.
+    There's a tiny amount and it's optional.
+
+    <h2>Certificates issued</h2>
+
+    <p>
+    Looking at
+    <a href="https://sslmate.com/certspotter/">certificate transparency logs</a>
+    I see five new certificates were successfully issued, including two wildcards.
+    2% of my new users have successfully issued production-grade, globally trusted certificates already.
+    Issuing a certificate takes more time and effort than just loading a web page, so more issuances from this cohort may still be coming.
+
+    <h2>Thanks</h2>
+
+    <p>
+    I hope you found these stats interesting.
+    Thanks to all who checked out
+    <a href="https://www.getlocalcert.net">getlocalcert.net</a>
+    yesterday.
+
+
+    <br />
+    <br />
+    <br />
+    <hr>
+    <br />
+    <br />
+    <br />
+    <p>
+    <strong>Hello!</strong>
+    I'm
+    <a href="https://www.robalexdev.com">Robert Alexander</a>,
+    a freelance software developer and security consultant.
+    This blog features some of my work and thoughts on software, the cloud, and security.
+    You can get updates on my posts
+    <a href="../rss.xml">with your favorite RSS client</a>
+    or on
+    <a href="https://robalexdev.substack.com/">Substack</a>.
+    I'm also on <a href="https://indieweb.social/@robalex">Mastodon</a>.
+
+
+<script data-goatcounter="https://alexsci.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
