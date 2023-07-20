@@ -2,3 +2,5 @@ https://chat\.openai\.com
 https://bugs\.chromium\.org/
 https://www\.rfc-editor\.org/
 https://chromium\.googlesource\.com/
+https://bugzilla\.mozilla\.org/
+https://hg\.mozilla\.org/
