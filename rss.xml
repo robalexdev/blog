@@ -58,6 +58,14 @@
     <guid isPermaLink="false">ce8b62e4-37c3-4132-bb06-f44e22a39907</guid>
   </item>
 
+  <item>
+    <title>Certificate Authority Trustworthiness</title>
+    <link>https://alexsci.com/blog/ca-trust/?rss=1</link>
+    <description>Challenges facing the CAs and why we still trust them</description>
+    <pubDate>Thu, 20 Jul 2023 00:00:00 GMT</pubDate>
+    <guid isPermaLink="false">6e7cf359-3482-4a19-82c3-2f986099fdb1</guid>
+  </item>
+
 </channel>
 
 </rss> 
