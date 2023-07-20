@@ -7,3 +7,4 @@ https://hg\.mozilla\.org/
 https://crt\.sh/
 https://ccadb\.my\.salesforce-sites\.com/
 https://www\.phishlabs\.com/
+https://web\.archive\.org/
