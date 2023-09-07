@@ -11,14 +11,6 @@
   <atom:link href="https://alexsci.com/blog/rss.xml" rel="self" type="application/rss+xml" />
 
   <item>
-    <title>ChatGPT First Thoughts</title>
-    <link>https://alexsci.com/blog/chatgpt-first-thoughts/?campaign=rss</link>
-    <description>I've been seeing lots of buzz about ChatGPT </description>
-    <pubDate>Sun, 26 Mar 2023 00:00:00 GMT</pubDate>
-    <guid isPermaLink="false">175ec9e6-fa87-4c0a-89fb-f63809a909d8</guid>
-  </item>
-
-  <item>
     <title>Name "Constrain't" on Chrome</title>
     <link>https://alexsci.com/blog/name-non-constraint/?campaign=rss</link>
     <description>When Name Constraints ain't enforced</description>
