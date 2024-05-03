@@ -9,6 +9,7 @@
   <description>Robert Alexander's Blog</description>
   <language>en-us</language>
   <atom:link href="https://alexsci.com/blog/rss.xml" rel="self" type="application/rss+xml" />
+  <source:blogroll>https://feedland.com/opml?screenname=robalexdev</source:blogroll>
 
   <item>
     <title>Name "Constrain't" on Chrome</title>
