@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline' https://alexsci.goatcounter.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://cdn.jsdelivr.net;"/>
+    <title>RSS blogrolls are a federated social network</title>
+    <link rel="alternate" type="application/rss+xml" title="Robert's Technology Blog" href="https://alexsci.com/blog/rss.xml">
+    <style>
+body {
+  margin: 2em;
+  max-width: 50em;
+  font-size: 1.2em;
+  font-family: system-ui, -apple-system, Helvetica;
+  background-color: #eee;
+  padding-bottom: 10em;
+  line-height: 1.8rem;
+}
+
+div#network-graph {
+  padding: 4em 0em 2em 0em;
+}
+
+span.code {
+  padding: 0.2em;
+  font-size: 1.1em;
+  font-family: monospace;
+  background-color: #ddd;
+  color: #111;
+}
+
+p.aside {
+  padding: 1em 0em 1em 3em;
+}
+
+blockquote {
+  margin: 2em;
+  padding: 1em;
+  background-color: #ddd;
+}
+
+div.title-block > h1 {
+  line-height: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+h2.subtitle {
+  font-size: 1.2em;
+  margin: 0em 0em 1em;
+}
+
+div.title-block > p{
+  margin: 0;
+}
+
+h2, h3 {
+  margin-top: 3.5em;
+}
+
+img {
+  padding: 1em;
+}
+
+img.top {
+  width: 50%;
+  padding: 4em;
+}
+
+pre {
+  tab-size: 2;
+  padding: 2em;
+}
+
+span.hover {
+  border-bottom: 1px dotted #000;
+}
+
+    </style>
+  </head>
+  <body>
+    <a href="../">Blog Home</a>
+    <hr>
+
+    <div class="title-block">
+    <h1>RSS blogrolls are a federated social network</h1>
+    <p><i>By <a href="https://www.robalexdev.com">Robert Alexander</a></i></p>
+    <p><i>2024-05-13</i></p>
+    </div>
+
+    <br />
+
+    <p>
+    RSS and <span class="hover" title="I'll say RSS feeds, but the same applies to Atom and JSON feeds">other web feeds</span> are a great way to keep track of articles published by your favorite blogs.
+    But feed discovery remains challenging.
+    Some recent work in this space opens up new opportunities.
+
+    <p>
+    <img class="top" src="opml-network.drawio.png">
+
+
+    <h2>History</h2>
+
+    <p>
+    Since the earliest blogs were published, blogrolls helped readers discover new blogs.
+    Each blogger could promote the blogs they follow by listing them somewhere on their site (their blogroll).
+    Readers could discover these suggestions as they browsed, helping them explore the blogosphere.
+    A blogroll could be as simple as a list of hyperlinks, although recent tooling has become more advanced.
+
+    <br />
+    <br />
+    <p>
+    <img style="max-width:60em" src="xkcd-blogroll.png" alt="Screenshot of XKCD's commic recommendations">
+    <br />
+    <i>Here's <a href="https://xkcd.com/">XKCD</a>'s blogroll, promoting other webcomics.</i>
+    <br />
+    <br />
+
+    <p>
+    With the rise of PageRank-based search engines (I.E. Google), content discovery suddenly became easy.
+    This sucked the wind out of the sails of manually curated blogrolls and directories: readers no longer needed them.
+    Twenty years later, the major search engines are losing the battle to filter out link farms and AI-generated slop.
+    Overwhelming SEO pressure has
+    <a href="https://theluddite.org/#!post/google-ads">mutated websites</a>
+    so now you can't get a recipe for brownies without a long back story.
+    They've turned towards value extraction, filling search results with so many ads that they sometimes push actual results below the fold.
+    (Although honestly, you're using an
+    <a href="https://github.com/gorhill/uBlock#ublock-origin">ad-blocker</a>,
+    right?)
+    It's a troubling development that makes us yearn for the early web.
+
+    <p>
+    Top search results are often just the same large websites: Wikipedia, IMDB, StackOverflow, etc.
+    It's a sea of sameness that makes the Internet feel boring and beige.
+    Personal blogs, small community websites, and other digital gardens still exist, and it's easier than ever to create your own, but Google won't find them for you.
+    Instead we're seeing modern search engines like
+    <a href="https://search.marginalia.nu">Marginalia</a>
+    emerge to elevate the small-web.
+
+    <p>
+    Social networks followed a similar path.
+    They proved that analyzing connected users (followers, friends, etc.) helped provide quality recommendations for content and new connections.
+    They connected a billion people online in a way that was previously not possible, providing real value to the users.
+    Unfortunately, the centralized social networks were also profit driven and they tuned their graph analytics and recommendation engines towards engagement over all else.
+    From 
+    fueling rage,
+    teen mental health crisis,
+    offensive advertising,
+    malvertising,
+    poor moderation,
+    log-in gated walled gardens,
+    censorship,
+    privacy-invasive practices,
+    and
+    the numerous degradations of Twitter: enshitification is in fully swing.
+
+    <p>
+    Many, myself included, have fled to the fediverse.
+    Popular software includes
+    <a href="https://joinmastodon.org/">Mastodon</a>,
+    <a href="https://pixelfed.org/">Pixelfed</a>, and
+    <a href="https://join-lemmy.org/">Lemmy</a>.
+    The fediverse is still small, with tens of millions of comments per month across millions of active users; tiny compared to the big centralized social networks which boast one to three billion active users.
+    But it's the quality of communications, community, and user-focused software that sets it apart.
+    Moderation in the fediverse is
+    <a href="https://mastodon.pwei.at/@fediplomacy/112377519755634296">much better staffed</a>,
+    and it shows.
+
+    <p>
+    Could a modern look at RSS feeds and blogrolls help the small-web much like the fediverse is revitalizing community in social networks?
+
+
+    <h2>RSS feeds</h2>
+
+    <p>
+    RSS readers work great when you've found a site that publishes content you want to consume.
+    You paste a URL in your feed reader and most tools will automatically detect available feeds.
+    Your reader will periodically scan your feeds for new content and track what you've already read.
+    It's a personalized news feed from sources you curate.
+    Importantly, an RSS reader is your user-agent and you can configure filters, processing, or other automation to suit your needs (instead of the needs of advertisers and shareholders).
+
+    <p>
+    But RSS historically hasn't helped discover new feeds.
+    You'd need to leave your RSS feed, navigate to the website to view any blogrolls, or use other platforms to discover new sites.
+    Some RSS readers support recommendations, but these are mostly centralized recommendations, not the sort of emergent recommendations you'll get from a social network.
+
+    <h2>Connecting blogs</h2>
+
+    <p>
+    At its core a social <i>network</i> is a collection of links between users.
+    The terminology varies, but these links could be friends, followers, subscribers, professional connections, etc.
+    If we wanted to make RSS social, we'd need a way to define links between the feeds.
+
+    <p>
+    An RSS feed is mostly just a list of posts. You link to it from your website using a <code>&lt;link rel="alternate" ... &gt;</code> element:
+
+    <p>
+    <img style="max-width:15em" src="rss.drawio.png" alt="An RSS feed pointing to three blog posts">
+    <br />
+    <br />
+
+    <p>
+    A blogroll traditionally is a list of hyperlinks to suggested websites:
+
+    <p>
+    <img style="max-width:10em" src="blogroll.drawio.png" alt="A website hyperlinking to three others">
+    <br />
+    <br />
+
+
+    <p>
+    Discovering these blogroll links programmatically is challenging.
+    Search engine crawlers can do it by exhaustively crawling the web, but the purpose of each hyperlink is unclear.
+    There's no specification for how to find a blogroll page or determine which hyperlinks are part of the blogroll.
+    What's missing is a specification for machine-readable blogrolls and a way to link to them from a homepage or RSS feed.
+
+    <p>
+    This idea is being explored by a couple different people at the moment.
+
+    <h2>OPML blogrolls</h2>
+
+    <p>
+    Dave Winer <a href="https://opml.org/blogroll.opml">has created</a>
+    a namespaced RSS element
+    <code>&lt;source:blogroll&gt;</code>
+    which points to list of RSS feed subscriptions in the OPML format.
+    He also proposed the
+    <code>&lt;link rel="blogroll" ...&gt;</code>
+    HTML element to make OPML blogrolls discoverable from webpages.
+    This specification makes blogrolls machine-discoverable and machine-readable.
+    <a href="https://micro.blog/">Micro.blog</a>
+    has 
+    <a href="https://help.micro.blog/t/recommendations/2671">adopted the HTML element</a>
+    for their hosted blogging service.
+
+    <p>
+    <a href="https://opml.org/">OPML</a> (Outline Processor Markup Language) is commonly used by RSS readers to import and export feed subscriptions.
+    It's a well-supported standard for sharing feed subscriptions and a natural choice to improve blogroll connectivity.
+
+    <p>
+    RSS feeds have always been part of the blogroll network, but these changes make it feasible to discover and walk the network.
+
+
+    <br />
+    <br />
+    <p>
+    <img style="max-width:20em" src="opml-links.drawio.png" alt="An RSS feed pointing to three blog posts">
+    <br />
+    <br />
+
+    <p>
+    It's worth noting, these are only <i>forward links</i> that describe which feeds a site follows or recommends.
+    <i>Backward links</i>, describing who subscribes to a feed, are not specified and would need to be discovered by walking the connection network.
+
+
+    <h2>Visualizing the blogroll network</h2>
+
+    <p>
+    As a starting place I manually identified twenty websites with OPML blogrolls.
+    From these I can follow links to find 150 distinct websites.
+    Several of the links go to YouTube pages, reminding us that RSS isn't just for blogs.
+    The network is small but could quickly exceed the scale of large manually-curated RSS feed lists (like <a href="https://github.com/plenaryapp/awesome-rss-feeds">Awesome RSS Feeds</a> which has around 500 feeds).
+    It's only been two months since the specification was proposed, so rapid growth is possible.
+
+    <p>
+    <a href="https://alexsci.com/rss-blogroll-network/">
+    <img style="max-width:30em" src="network-diagram.png" alt="A graph showing connections between web feeds">
+    </a>
+
+    <p>
+    To track the network growth over time, I've created a 
+    <a href="https://github.com/ralexander-phi/rss-blogroll-network">git scraping crawler</a>
+    that I'll run until it become impractical.
+    You can
+    <a href="https://alexsci.com/rss-blogroll-network/">view the latest network graph</a>,
+    which will be updated periodically.
+    If you'd like to join the network, but your blog isn't discoverable from the network yet, check out the repo for instructions on manually adding your website.
+    Opt-out instructions are also in the repo.
+
+
+    <h2>Deploy your own discoverable blogroll</h2>
+
+    <p>
+    Deploying an OPML blogroll is as easy as uploading the file to your hosting provider and linking to it.
+
+    <p>
+    Check if your existing hosting or site generator supports discoverable blogrolls.
+    Early adopters like
+    <a href="https://micro.blog/">micro.blog</a>
+    are ready to go.
+    Others may take longer, so be sure to let them know you are interested.
+
+    <p>
+    Ideally, you'll want to auto-generate an HTML view of your OPML blogroll for web browsers.
+    The blog you're reading now is a collection of
+    <a href="https://github.com/ralexander-phi/blog">raw HTML files</a>
+    hosted on GitHub Pages, so I wrote something custom.
+    My subscription list is on
+    <a href="https://feedland.com/?username=robalexdev">FeedLand</a>
+    (another Dave Winer creation) so I link there instead of hosting my own.
+    I wrote an
+    <a href="https://github.com/ralexander-phi/feed2pages-action">RSS crawler</a>
+    that collects recent posts from my subscription list and 
+    recommendations from discoverable blogrolls they contain.
+    You can 
+    <a href="https://alexsci.com/feeds/following/">view my feeds and their recommendations</a>.
+
+    <p>
+    If you'd like to use my approach, check out these repos:
+
+    <ul>
+      <li><a href="https://github.com/ralexander-phi/feed2pages-action">feed2pages-action</a> - The golang utility and GitHub Action
+      <li><a href="https://github.com/ralexander-phi/feed2pages">feed2pages</a> - A demo site using Hugo
+      <li><a href="https://github.com/ralexander-phi/feed2pages-papermod">feed2pages-papermod</a> - A demo site with the PaperMod Hugo theme
+    </ul>
+
+    <p>
+    These are either open source or public domain, so fork away.
+
+    
+    <h2>What's next</h2>
+
+    <p>
+    Hopefully I've piqued your interest in RSS feeds and blogrolls.
+    The value of a network grows with the number of nodes, so I'm hopeful others will join us.
+
+    <p>
+    It's still unclear how RSS readers will adopt the blogroll network.
+    Discovery by walking the network or using graph analysis for generating recommendations seem possible.
+    Software could make it easy to publish feeds or support back-ends like FeedLand for subscription management.
+    My network mapping tools may be the first, but there are many possible improvements.
+    I'm excited to see what others can build.
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <hr>
+    <br />
+    <br />
+    <br />
+    <p>
+    <strong>Hello!</strong>
+    I'm
+    <a href="https://www.robalexdev.com">Robert Alexander</a>,
+    a freelance software developer and security consultant.
+    This blog features some of my work and thoughts on software, the cloud, and security.
+    You can get updates on my posts
+    <a href="../rss.xml">with your favorite RSS client</a>
+    or on
+    <a href="https://robalexdev.substack.com/">Substack</a>.
+    I'm also on <a href="https://indieweb.social/@robalex">Mastodon</a>.
+
+<script data-goatcounter="https://alexsci.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
