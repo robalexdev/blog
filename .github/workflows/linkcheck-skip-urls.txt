@@ -10,3 +10,4 @@ https://www\.phishlabs\.com/
 https://web\.archive\.org/
 https://robalexdev\.substack\.com/
 https://superuser\.com/
+https://theluddite\.org
