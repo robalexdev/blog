@@ -11,3 +11,5 @@ https://web\.archive\.org/
 https://robalexdev\.substack\.com/
 https://superuser\.com/
 https://theluddite\.org
+https://mastodon\.pwei\.at
+https://symantec-enterprise-blogs\.security\.com
