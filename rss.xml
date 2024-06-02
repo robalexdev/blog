@@ -9,7 +9,17 @@
   <language>en-us</language>
   <atom:link href="https://alexsci.com/blog/rss.xml" rel="self" type="application/rss+xml" />
   <source:blogroll>https://feedland.com/opml?screenname=robalexdev</source:blogroll>
-  <pubDate>Sun, 25 Feb 2024 00:00:00 GMT</pubDate>
+  <category>personal website and blog</category>
+  <category>tech</category>
+  <category>security</category>
+  <category>cloud</category>
+
+  <!-- 
+
+      KEEP THIS UP TO DATE! 
+
+  -->
+  <pubDate>Mon, 13 May 2024 00:00:00 GMT</pubDate>
 
   <item>
     <title>Name "Constrain't" on Chrome</title>
@@ -73,6 +83,9 @@
     <description>Could a modern look at RSS feeds and blogrolls help the small-web much like the fediverse is revitalizing community in social networks? </description>
     <pubDate>Mon, 13 May 2024 00:00:00 GMT</pubDate>
     <guid isPermaLink="false">735bae54-8a58-4b74-8782-57c22b000822</guid>
+    <category>RSS</category>
+    <category>blogroll</category>
+    <category>social networks</category>
   </item>
 
 </channel>
