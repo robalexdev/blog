@@ -5,7 +5,7 @@
 <channel>
   <title>alexsci.com blog</title>
   <link>https://alexsci.com/blog/</link>
-  <description>Robert Alexander's Blog</description>
+  <description>Robert Alexander's blog about #Tech, #Security, and the #Cloud</description>
   <language>en-us</language>
   <atom:link href="https://alexsci.com/blog/rss.xml" rel="self" type="application/rss+xml" />
   <source:blogroll>https://feedland.com/opml?screenname=robalexdev</source:blogroll>
