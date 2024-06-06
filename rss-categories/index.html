@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline' https://alexsci.goatcounter.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://cdn.jsdelivr.net;"/>
+    <title>RSS Categories - In Practice</title>
+    <link rel="alternate" type="application/rss+xml" title="Robert's Technology Blog" href="https://alexsci.com/blog/rss.xml">
+    <style>
+body {
+  margin: auto;
+  padding: 2em;
+  max-width: 50em;
+  font-size: 1.2em;
+  font-family: system-ui, -apple-system, Helvetica;
+  background-color: #eee;
+  padding-bottom: 10em;
+  line-height: 1.8rem;
+}
+
+div#network-graph {
+  padding: 4em 0em 2em 0em;
+}
+
+span.code {
+  padding: 0.2em;
+  font-size: 1.1em;
+  font-family: monospace;
+  background-color: #ddd;
+  color: #111;
+}
+
+p.aside {
+  padding: 1em 0em 1em 3em;
+}
+
+blockquote {
+  margin: 2em;
+  padding: 1em;
+  background-color: #ddd;
+}
+
+div.title-block > h1 {
+  line-height: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+h2.subtitle {
+  font-size: 1.2em;
+  margin: 0em 0em 1em;
+}
+
+div.title-block > p{
+  margin: 0;
+}
+
+h2, h3 {
+  margin-top: 3.5em;
+}
+
+img {
+  max-width: 90%;
+}
+
+p.img {
+  padding: 2em 1em 2em 1em;
+}
+
+img.top {
+  width: 50%;
+  padding: 4em;
+}
+
+pre {
+  tab-size: 2;
+  padding: 2em;
+}
+
+span.hover {
+  border-bottom: 1px dotted #000;
+}
+
+    </style>
+  </head>
+  <body>
+    <a href="../">Blog Home</a>
+    <hr>
+
+    <div class="title-block">
+    <h1>RSS Categories - In Practice</h1>
+    <p><i>By <a href="https://www.robalexdev.com">Robert Alexander</a></i></p>
+    <p><i>2024-06-06</i></p>
+    </div>
+
+    <br />
+
+    <p>
+    I've been building a 
+    <a href="https://alexsci.com/rss-blogroll-network/">directory of RSS feeds</a>
+    which has quickly grown to over a thousand feeds.
+    To build the directory, I wrote a web crawler
+    <a href="https://github.com/ralexander-phi/feed2pages-action">(open source)</a>
+    which fetches each feed, parses it to collect metadata, identifies <a href="https://opml.org/blogroll.opml">OPML blogrolls</a>, and spiders to each new feed it discovers.
+    I'm hopeful the directory will expand as more people adopt OPML for their blogrolls.
+
+    <p>
+    One challenge I needed to tackle was to figure out how the RSS (and Atom) spec is used in practice.
+    There's some instances where the spec is followed, some where the spec is vague, and others where the spec is not followed.
+    The category tags of RSS are a good example of this.
+
+
+    <h2>The channel <code>&lt;category&gt;</code> element</h2>
+
+    <p>
+    The category element is an optional sub-element of the channel and item elements.
+    The spec for category is pretty short:
+
+    <p style="padding: 2em;"><i>
+&lt;category&gt; is an optional sub-element of &lt;item&gt;.
+<br />
+<br />
+
+It has one optional attribute, domain, a string that identifies a categorization taxonomy.
+The value of the element is a forward-slash-separated string that identifies a hierarchic location in the indicated taxonomy. Processors may establish conventions for the interpretation of categories. Two examples are provided below:
+<br />
+&lt;category&gt;Grateful Dead&lt;/category&gt;
+<br />
+&lt;category domain="http://www.fool.com/cusips"&gt;MSFT&lt;/category&gt;
+<br />
+<br />
+
+You may include as many category elements as you need to, for different domains, and to have an item cross-referenced in different parts of the same domain.
+    </i></p>
+
+    <p>
+    Right off the bat, we see <i>"Processors may establish conventions for the interpretation of categories"</i>.
+    So the spec doesn't have all the information we need to proceed.
+    With over a thousand feeds in my dataset, I decided to look at what conventions I could deduce.
+
+    <p>
+    A first observation was that <code>&lt;category&gt;</code> elements are rarely present for the channel.
+    Only about twenty in one thousand have any.
+    My blog didn't either... so I added one.
+    Channel categories would be really useful for navigating a large directory of feeds, but they are too rare.
+    Item categories, I.E. tags for individual posts, are more common with at least 25% of the feeds in my dataset using them.
+
+    <p>
+    Another observation was that the content of the category element isn't always intended for humans.
+    For example, one blog uses numbers in the category and another uses URI fragments.
+
+    <p>
+    One place where actual usage diverges from the spec is how forward slashes are used.
+    For example, a post with the category <code>A Noun A Verb And 9/11</code> should be interpreted as being about <code>11</code>, which is a subcategory of <code>A Noun A Verb And 9</code>.
+    But it's clearly not a subcategory.
+    I wasn't able to find any categories that were obviously using <code>/</code> as a subcategory separator.
+    I decided it would be best to assume that feeds don't follow the spec, and subcategories aren't a thing.
+
+    
+    <h2>Syndic8 and Taxonomies</h2>
+
+    <p>
+    You'll notice that the <code>domain</code> attribute from the example above looks like a URL.
+    However, the spec says that it's just a string and there's a comment at the end of the spec that explains this.
+    
+    <p style="padding: 2em;"><i>
+      In RSS 2.0, a provision is made for linking a channel to its identifier in a cataloging system, using the channel-level category feature, described above. For example, to link a channel to its Syndic8 identifier, include a category element as a sub-element of &lt;channel&gt;, with domain "Syndic8", and value the identifier for your channel in the Syndic8 database. The appropriate category element for Scripting News would be &lt;category domain="Syndic8"&gt;1765&lt;/category&gt;.
+    </i></p>
+
+    <p>
+    The Syndic8 database is defunct, but I was able to find an
+    <a href="https://web.archive.org/web/20130124223347/http://www.syndic8.com/feedcat.php?Scheme=Syndic8#tabtable">archived version</a>.
+    Here's the <a href="https://web.archive.org/web/20130122111741/http://www.syndic8.com/feedinfo.php?FeedID=1765">link for Scripting News</a>.
+    The Syndic8 page shows a few other categories being used: DMOZ, NewsIsFree (NIF), and TX.
+    Unfortunately, DMOZ shut down in 2017, NIF is currently full of affiliate links, and TX is too vague to identify.
+
+    <p class="img">
+    <img src="syndic8-cats.png" alt="A screenshot of an archived syndic8.com page. Showing categories like Consumer (42), Culture (30), and Dow Jones 30 (29).">
+    <br />
+    The archived syndic8 page.
+
+
+    <p>
+    Syndic8 was nowhere to be found in my dataset.
+    I turned to <a href="https://sourcegraph.com/">sourcegraph.com</a> to see if I could find an example.
+    This pointed to a 16-year-old <a href="https://github.com/nod/boombot/blob/master/plugins/Bible/docs/examples/rss20.xml">example file</a>:
+
+    <pre>
+    ...
+    &lt;category domain="Syndic8"&gt;1024&lt;/category&gt;
+    &lt;category domain="dmoz"&gt;Top/Society/People/Personal_Homepages/P/&lt;/category&gt;
+    ...</pre>
+
+    <p>
+    Cool, that matches the RSS spec and shows how the forward-slash was intended to be used.
+    But I'm not seeing anything like that in use today.
+
+    <p>
+    The domain attribute in my dataset was rarely present.
+    When it was, it was always a URL.
+
+    <pre>
+      436 category domain="http://www.blogger.com/atom/ns#"
+        7 category domain="https://ruk.ca/topics/travel/italy"
+        7 category domain="https://ruk.ca/topics/travel"
+        7 category domain="https://brainbaking.com/tags/metapost"
+        5 category domain="https://ruk.ca/topics/sketch"
+      ...</pre>
+
+    <p>
+    Awkwardly, the most commonly used URL, <code>http://www.blogger.com/atom/ns#</code>, throws a 404 error.
+    <a href="https://web.archive.org/web/20070221161648/https://www.blogger.com/atom/ns">An archive of the page</a> shows that this was previously a password protected API.
+    Blogger <a href="https://blogger-developers.googleblog.com/archives/atom-docs.html">deprecated this API</a> sometime around 2006.
+    Blogs hosted on blogger.com continue to use this value, although the meaning isn't defined in any of the docs (as far as I could find).
+    Kinda odd.
+
+    <p>
+    All of the others are URLs to a blog-specific categorization scheme.
+    If you open the URL you'll see all the posts on that blog in that category.
+    So the domain is usually a link to more content in that category.
+
+
+    <h2>Podcast Categories</h2>
+
+    <p>
+    I noticed that 5% of the feeds were podcasts.
+    While podcasts use RSS for their format, they have a bunch of unique traits.
+    For one, iTunes defined the <code>&lt;itunes:category&gt;</code> element as the preferred way to set the category.
+    This element stores the category as an attribute.
+    Podcasts are required to have an <code>&lt;itunes:category&gt;</code>, so this is present in all the podcast feeds I've found.
+
+    <p>
+    There's too much detail in the iTunes docs to go into it, but I found it interesting that iTunes uses a <a href="https://podcasters.apple.com/support/1691-apple-podcasts-categories">fixed set of categories</a>.
+    The categorization scheme is surprisingly small: only 120 categories.
+    Large directories can have a huge number of categories: defunct DMOZ had over a million.
+
+    <p>
+    The iTunes category system's small size makes it easy to assign a category for your podcast (iTunes only lets you pick one).
+    But it wouldn't be suitable for blogs, or the web in general, it's far too small.
+    
+    <h2>Un-taxonomy: the hashtag</h2>
+
+    <p>
+    Another interesting trend is the use of hashtags either as categories or in the description of a feed.
+    I don't see any evidence that RSS tools directly support hashtags, so this may be bleed over of users familiar with them on other platforms.
+    I was able to find around 700 examples of a hashtag being used in my dataset between categories.
+
+    <p>
+    There's no central authority on which hashtags should be used or what they mean.
+    This potentially fragments naming as different people will choose different hashtags for related topics, but it ends up working well in practice.
+    Writers gravitate towards popular hashtags to try to catch the attention of readers.
+    Readers flock to popular hashtags because they see those being used.
+    It's an organic approach that trends towards a common naming system without central authority.
+
+    <p>
+    Hashtags are sort of a good fit for RSS feed categorization.
+    The lack of a central authority matches the federated nature of RSS feeds.
+    When RSS was being developed, the idea that you could centrally define a taxonomy for the entire web was considered possible.
+    Today, few online directories exist and they are tiny compared to major search engine indexes.
+
+    
+    <h2>A path forward</h2>
+
+    <p>
+    My current approach is:
+
+    <ul>
+      <li>Violate the RSS spec: don't treat forward-slashes as subcategory separators</li>
+      <li>Use alternate categorization elements, like <code>&lt;itunes:category&gt;</code></li>
+      <li>Scan descriptions for hashtags, use these as categories if none were specified</li>
+      <li>If a channel still doesn't have any categories, use the categories of the most recent post</li>
+    </ul>
+
+    <p>
+    Using this model, here's the most popular categories in my dataset:
+
+    <pre>
+     43 - Society &amp; Culture
+     29 - Uncategorized
+     24 - Technology
+     14 - personal website and blog
+     14 - News
+     12 - books
+     10 - advertising
+      9 - radio
+      8 - technology
+      8 - Music
+      8 - music
+      8 - movies
+      8 - history
+      8 - Facebook
+      7 - X-Men
+      7 - TV
+      7 - Thanksgiving
+      7 - tech
+      7 - poetry
+      7 - Open Web
+      7 - MTV
+      7 - kids
+      7 - Ireland
+      7 - HBO
+      7 - Canada
+      7 - AI
+      7 - activism
+      6 - philosophy
+      6 - Blog
+      6 - Arts
+      6 - art
+      6 - Apple
+      6 - ai
+      5 - zoning
+      5 - WordPress
+      5 - Wonder Woman
+      5 - wildlife
+      5 - weddings
+      5 - Valentine's Day
+      5 - unicorns
+      5 - Ukraine
+      5 - UK
+      5 - Tolstoy
+      5 - spring
+      5 - Seattle
+      5 - Science
+      5 - Sartre
+      5 - San Diego
+      5 - reading
+      5 - rain
+      5 - '#polycons'
+      5 - polyamory
+      5 - politics
+      5 - podcasts
+      5 - phones
+      5 - parenting
+      5 - New York
+      5 - murder
+      5 - merch
+      5 - marriage
+    ...</pre>
+
+    <p>
+    As expected, without a consistent taxonomy we have some duplicated elements, like Technology, technology, and tech.
+
+    <p>
+    You can see all the results at
+    <a href="https://alexsci.com/rss-blogroll-network/discover/">RSS Blogroll Network</a>.
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <hr>
+    <br />
+    <br />
+    <br />
+    <p>
+    <strong>Hello!</strong>
+    I'm
+    <a href="https://www.robalexdev.com">Robert Alexander</a>,
+    a freelance software developer and security consultant.
+    This blog features some of my work and thoughts on software, the cloud, and security.
+    You can get updates on my posts
+    <a href="../rss.xml">with your favorite RSS client</a>
+    or on
+    <a href="https://robalexdev.substack.com/">Substack</a>.
+    I'm also on <a href="https://indieweb.social/@robalex">Mastodon</a>.
+
+<script data-goatcounter="https://alexsci.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
