@@ -75,7 +75,7 @@ The Syndic8 page shows a few other categories being used: DMOZ, NewsIsFree (NIF)
 Unfortunately, DMOZ shut down in 2017, NIF is currently full of affiliate links, and TX is too vague to identify.
 
 
-> ![A screenshot of an archived syndic8.com page. Showing categories like Consumer (42), Culture (30), and Dow Jones 30 (29).](/rss-categories/syndic8-cats.png)
+> ![A screenshot of an archived syndic8.com page. Showing categories like Consumer (42), Culture (30), and Dow Jones 30 (29).](syndic8-cats.png)
 
 > The archived syndic8 page.
 
