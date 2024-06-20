@@ -49,8 +49,6 @@ These would carry equivalent information to an RSS feed, and h-feed compatible f
 This keeps your blog [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 But support for h-feeds is lacking, so a "legacy" RSS feed is still highly desired.
 
-# XXX h-feed support??
-
 ## Migrating to Hugo
 
 Why Hugo?
