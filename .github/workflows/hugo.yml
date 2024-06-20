@@ -46,7 +46,7 @@ jobs:
         with:
           path: ./public
       - name: Spider and check
-        run: cd public ; python3 -m http.server & wget https://github.com/filiph/linkcheck/releases/download/3.0.0/linkcheck-3.0.0-linux-x64.tar.gz && tar xvf linkcheck-3.0.0-linux-x64.tar.gz && sleep 2 && ./linkcheck/linkcheck -e --skip-file .github/workflows/linkcheck-skip-urls.txt :8000
+        run: cd public ; python3 -m http.server & wget https://github.com/filiph/linkcheck/releases/download/3.0.0/linkcheck-3.0.0-linux-x64.tar.gz && tar xvf linkcheck-3.0.0-linux-x64.tar.gz && sleep 2 && ./linkcheck/linkcheck -e --skip-file ../.github/workflows/linkcheck-skip-urls.txt :8000
 
   deploy:
     environment:
