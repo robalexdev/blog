@@ -1,0 +1,17 @@
+<h3 class="post-listing">
+<a href="{{ .Permalink }}">
+{{ .Title }}</a>
+
+    <div class="cat-tags">
+      {{ if .Params.isPopular}}
+      <span title="Popular post" class="cat-tag popular">★ Popular</span>
+      {{ end }}
+      {{ range .Params.categories }}
+      <span class="cat-tag">{{ . }}</span>
+      {{ end }}
+    </div>
+{{ .Date | time.Format "Jan 2006" }}
+<span class="sep">
+{{ .Params.Summary }}
+</span>
+</h3>

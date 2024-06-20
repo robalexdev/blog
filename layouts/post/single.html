@@ -1,0 +1,22 @@
+{{ define "main" }}
+<main aria-role="main" class="post">
+  <a href="/">Blog Home</a>
+  <hr />
+  <header class="homepage-header">
+    <h1>{{ .Title }}</h1>
+    <div><b>{{ .Summary }}</b></div>
+    {{ if .Params.categories }}
+    <div class="cat-tags">
+      {{ range .Params.categories }}
+      <span class="cat-tag">{{ . }}</span>
+      {{ end }}
+    </div>
+    {{ end }}
+    <div><i>By <a href="https://www.robalexdev.com/">Robert Alexander</a></i></div>
+    <div><i>{{ .Date | time.Format "2006-01-02" }}</i></div>
+  </header>
+  {{ .Content }}
+  <br /><br /><br /><br /><br />
+  <hr />
+</main>
+{{ end }}

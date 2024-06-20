@@ -1,0 +1,16 @@
+#baseURL = 'https://alexsci.com/blog/'
+languageCode = 'en-us'
+title = "Robert Alexander's Tech Blog"
+permalinks.post = '/:slug/'
+
+[params]
+  [params.author]
+    email = 'robert@robalexdev.com'
+    name = 'Robert Alexander'
+
+# Legacy RSS feed name
+[outputFormats]
+  [outputFormats.RSS]
+    mediatype = "application/rss"
+    baseName = "rss"
+
