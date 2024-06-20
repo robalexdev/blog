@@ -7,7 +7,11 @@
       <span title="Popular post" class="cat-tag popular">★ Popular</span>
       {{ end }}
       {{ range .Params.categories }}
-      <span class="cat-tag">{{ . }}</span>
+      <a href="{{ absURL (printf "%s%s%s" "/categories/" (. | urlize) "/" ) }}">
+      <span class="cat-tag">
+        {{ . }}
+      </span>
+      </a>
       {{ end }}
     </div>
 {{ .Date | time.Format "Jan 2006" }}

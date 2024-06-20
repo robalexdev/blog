@@ -1,0 +1,22 @@
+{{ define "main" }}
+<main aria-role="main" class="post">
+  <a href="/blog/">Blog Home</a>
+  <hr />
+  <header class="homepage-header">
+    <h1>{{ .Title }}</h1>
+  </header>
+
+<ul>
+  {{ range .Data.Pages }}
+  <li>
+    <a href="{{.RelPermalink}}">{{ .Title }}</a>
+  </li>
+  {{ end }}
+</ul>
+
+  <br /><br /><br /><br /><br />
+  <hr />
+</main>
+
+
+{{ end }}

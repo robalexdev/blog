@@ -7,8 +7,13 @@
     <div><b>{{ .Summary }}</b></div>
     {{ if .Params.categories }}
     <div class="cat-tags">
+
       {{ range .Params.categories }}
-      <span class="cat-tag">{{ . }}</span>
+      <a href="{{ absURL (printf "%s%s%s" "/categories/" (. | urlize) "/") }}">
+      <span class="cat-tag">
+        {{ . }}
+      </span>
+      </a>
       {{ end }}
     </div>
     {{ end }}
