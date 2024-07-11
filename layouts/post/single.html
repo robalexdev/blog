@@ -1,3 +1,17 @@
+{{ define "title" }}
+{{ .Title }}
+{{ end }}
+
+{{ define "extrahead" }}
+  <meta property="article:author" content="https://indieweb.social/@robalex">
+  <meta property="article:publisher" content="https://indieweb.social/@robalex">
+  <meta property="og:description" content="{{ .Summary }}" />
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+{{ end }}
+
 {{ define "main" }}
 <main aria-role="main" class="post">
   <a href="/blog/">Blog Home</a>

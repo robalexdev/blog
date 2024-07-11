@@ -235,9 +235,4 @@ I created.
 Some of these are password protected, the password is `1234`.
 Please don't use this outside a VM or other isolated environment, these are leaked keys and they are unsafe.
 
-{{< rawhtml >}}
-<script type="module">
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-mermaid.initialize({ startOnLoad: true });
-</script>
-{{< /rawhtml >}}
+{{< mermaid >}}

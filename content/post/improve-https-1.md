@@ -6,6 +6,7 @@ summary: Launching the getlocalcert.net service
 params:
   guid: 20ace332-7d7a-4306-8fab-d8e9de4bca81
   categories:
+  - getlocalcert
   - HTTPS
   - Security
 ---

@@ -1,0 +1,18 @@
+
+
+<div class="quote {{ .Get "variant" }}">
+  {{ .Inner }}
+  {{ if .Get "byline" }}
+  <div class="byline">
+  —
+  {{ if .Get "link" }}
+  <a href="{{ .Get "link" }}">
+  {{ end }}
+    {{ .Get "byline" }}
+  {{ if .Get "link" }}
+  </a>
+  {{ end }}
+  </div>
+  {{ end }}
+</div>
+
