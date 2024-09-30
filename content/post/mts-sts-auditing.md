@@ -1,6 +1,6 @@
 ---
 title: SMTP Downgrade Attacks and MTA-STS
-date: 2024-09-27
+date: 2024-09-30
 summary: Running a bunch of mail servers to audit email security
 params:
   categories:
