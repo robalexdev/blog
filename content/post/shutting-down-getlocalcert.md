@@ -1,7 +1,8 @@
 ---
-title: Shutting down getlocalcert
+title: The next stage of getlocalcert.net
 date: 2024-11-05
-summary: The end of an experiment
+summary: Keeping the project going
+slug: shutting-down-getlocalcert
 params:
   categories:
   - getlocalcert
@@ -9,9 +10,14 @@ params:
   - Security
 ---
 
-Over the next month, I will be shutting down the getlocalcert.net service.
-I've disabled new sign-ups and new sub-domain registration.
-Certificate renewals are still enabled.
+**Update:** In exciting news, the getlocalcert.net project will continue under new management.
+I'm grateful to [William Harrison](https://wdharrison.com/) for taking the lead on future development.
+Over the next month, I'll be transferring domains, servers, and other project resources.
+There may be short periods of downtime during the transition, but users should be minimally disrupted.
+
+Please consider sponsoring William to support this next stage of the project.
+
+*This post previously claimed the project would be shut down. The original post follows, with references to shut down removed.*
 
 I started the getlocalcert.net project to explore two key ideas:
 
@@ -50,23 +56,4 @@ To avoid spam email from these domains I configured PowerDNS to publicly host so
 
 This approach proved to be extremely effective.
 I was able to keep anonymous subdomain registration open, even without CAPTCHAs.
-
-
-## Migration options
-
-Users impacted by the shutdown may continue using their subdomains on their private networks (using split DNS).
-I'll let the domains expire, and someone else may eventually register them.
-Issued certificates will remain active through their normal expiry (90 days).
-Users may with to renew certificates early, before the shutdown, to extend their transition period.
-
-Other [free subdomain registration services](https://free.hrsn.dev/#/?id=domains) exist, and users may consider switching to these.
-Registering a domain name of your own is also a great option, which avoids the churn of free providers.
-
-The source code for getlocalcert.net is open source:
-* https://github.com/robalexdev/getlocalcert-webapp
-* https://github.com/robalexdev/getlocalcert-client-tests
-* https://github.com/robalexdev/docs.getlocalcert.net
-* https://github.com/robalexdev/getlocalcert.net
-
-Thanks to all that joined me on this adventure.
 
