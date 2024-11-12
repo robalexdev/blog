@@ -69,7 +69,7 @@ and he pointed me towards a way to pre-warm the cache.
 First enable the `proactive_policy_fetching` setting in `/etc/mta-sts-daemon.yml` and then scan the domains with postmap.
 Here's an example showing gmail.com being added to the cache (indented for clarity):
 
-    $ sudo /usr/sbin/postmap -q gmail.com socketmap:inet:127.0.0.1:8461:postfix
+    $ /usr/sbin/postmap -q gmail.com socketmap:inet:127.0.0.1:8461:postfix
     secure match=gmail-smtp-in.l.google.com:.gmail-smtp-in.l.google.com servername=hostname
 
     $ sqlite3 /var/lib/mta-sts/cache.db "SELECT * FROM sts_policy_cache"
@@ -88,7 +88,7 @@ This approach works great as it double checks if the domain still has MTA-STS su
 You can warm your MTA-STS cache with this command, which downloads the latest preload list and processes each domain with postmap:
 
     $ curl https://raw.githubusercontent.com/ralexander-phi/mta-sts-cache-warming/refs/heads/main/mta-sts-hints.txt \
-      | sudo /usr/sbin/postmap -q - socketmap:inet:127.0.0.1:8461:postfix
+      | /usr/sbin/postmap -q - socketmap:inet:127.0.0.1:8461:postfix
 
 You may want to run this command when setting up a new Postfix server or when enabling MTA-STS support for the first time.
 The one-liner can also be run as a cron job, if you'd like to keep your cache up to date as the preload list grows.
