@@ -175,8 +175,10 @@ None had DANE support enabled.
 
 Looking again at my list of 65,244 domain names:
 
-* 1.1% supported MTA-STS (741 domains)
-* 0.6% used MTA-STS in 'enforce' mode (387 domains)
+* 1.2% supported MTA-STS (792 domains)
+* 0.7% used MTA-STS in 'enforce' mode (415 domains)
+
+Edit: I had originally missed MTA-STS policy delegation (CNAME). I rescanned the domains and have updated the numbers with around 50 more domains.
 
 To support MTA-STS, a mail server needs to have a TLS certificate issued by a public CA.
 Thankfully, these are easy to find:
