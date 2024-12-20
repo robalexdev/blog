@@ -11,7 +11,7 @@ params:
 ---
 
 **Update:** In exciting news, the getlocalcert.net project will continue under new management.
-I'm grateful to [William Harrison](https://wdharrison.com/) for taking the lead on future development.
+I'm grateful to [William Harrison](https://wharrison.com.au/) for taking the lead on future development.
 Over the next month, I'll be transferring domains, servers, and other project resources.
 There may be short periods of downtime during the transition, but users should be minimally disrupted.
 
