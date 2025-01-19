@@ -44,7 +44,12 @@
 {{- end }}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 {{- printf "<?xml-stylesheet href=\"/rss.xsl\" type=\"text/xsl\" ?>" | safeHTML }}
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:source="http://source.scripting.com/">
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:source="http://source.scripting.com/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  >
   <channel>
     <title>Robert Alexander's Tech Blog</title>
     <link>{{ .Permalink }}</link>
@@ -52,6 +57,10 @@
     <description>A personal blog about #Tech, #Security, and the #Cloud</description>
     <language>en-us</language>
     <source:blogroll>https://feedland.com/opml?screenname=robalexdev</source:blogroll>
+
+    <sy:updatePeriod>daily</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+
     <category>tech</category>
     <category>security</category>
     <category>cloud</category>
@@ -79,6 +88,9 @@
       {{ end }}
 
       <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>
+      <content:encoded>
+      {{- .Content | transform.XMLEscape | safeHTML -}}
+      </content:encoded>
 
       {{ range .Params.categories }}
       <category>{{ . }}</category>
