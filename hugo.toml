@@ -1,4 +1,4 @@
-#baseURL = 'https://alexsci.com/blog/'
+baseURL = 'https://alexsci.com/blog/'
 languageCode = 'en-us'
 title = "Robert Alexander's Tech Blog"
 permalinks.post = '/:slug/'
