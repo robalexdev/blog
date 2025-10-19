@@ -9,7 +9,7 @@ params:
   - UUID
 ---
 
-*This post is part of a [collection on UUIDs](../uuid-collection/).*
+*This post is part of a [collection on UUIDs](/uuid-collection/).*
 
 ## What is IDOR?
 
@@ -106,7 +106,7 @@ This way, people in the private chat room can view the video, but the owner does
 In essence, anyone who knows the URL is considered authorized from YouTube's perspective.
 
 {{< figure
-  src="./YouTube-unlisted.png"
+  src="/uuids-and-idor/YouTube-unlisted.png"
   alt="A radio control based form with the following text. Visibility. Choose when to publish and who can see your video. Save or publish. Make your video public, unlisted, or private. Private. Only you and people you choose can watch your video. Unlisted. Anyone with the video link can watch your video. Public. Everyone can watch your video."
   caption="YouTube visibility selection"
 >}}
@@ -133,7 +133,7 @@ AWS appears to use 160 bits of entropy to protect these URLs.
 Here's the verbiage AWS uses when you create a share link.
 
 {{< figure
-  src="AWS-unlisted-urls.png"
+  src="/uuids-and-idor/AWS-unlisted-urls.png"
   alt="A dialog box containing the following text. Public server acknowledgment: Your data will be stored on AWS public servers. The calculator will generate an obscure, but publicly accessible URL. Anyone with the public share link will be able to access your estimate."
   caption="AWS billing share dialog"
 >}}

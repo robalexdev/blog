@@ -23,5 +23,5 @@ Presented here in no particular order and on no particular schedule.
 
 This collection covers UUIDs, especially collisions, guessability, and implementation quirks.
 
-* [Why UUIDs won't protect your secrets](../uuids-and-idor/): UUIDs and Indirect Object Reference
+* [Why UUIDs won't protect your secrets](/uuids-and-idor/): UUIDs and Indirect Object Reference
 
