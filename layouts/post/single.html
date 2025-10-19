@@ -23,7 +23,7 @@
     <div class="cat-tags">
 
       {{ range .Params.categories }}
-      <a href="{{ absURL (printf "%s%s%s" "/categories/" (. | urlize) "/") }}">
+      <a href="{{ absURL (printf "%s%s%s" "/blog/categories/" (. | urlize) "/") }}">
       <span class="cat-tag">
         {{ . }}
       </span>

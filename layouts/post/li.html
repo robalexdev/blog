@@ -7,7 +7,7 @@
       <span title="Popular post" class="cat-tag popular">★ Popular</span>
       {{ end }}
       {{ range .Params.categories }}
-      <a href="{{ absURL (printf "%s%s%s" "/categories/" (. | urlize) "/" ) }}">
+      <a href="{{ absURL (printf "%s%s%s" "/blog/categories/" (. | urlize) "/" ) }}">
       <span class="cat-tag">
         {{ . }}
       </span>
