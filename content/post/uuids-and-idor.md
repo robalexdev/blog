@@ -4,6 +4,7 @@ date: 2025-10-19
 slug: uuids-and-idor
 summary: UUIDs and Indirect Object Reference
 params:
+  isPopular: true
   categories:
   - Security
   - UUID
