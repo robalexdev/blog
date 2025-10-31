@@ -184,10 +184,3 @@ Broken dependencies, error-prone developers, hard-coded values, weak cryptograph
 
 UUIDs are not immune.
 
-
-
-XXX put face on the bottom of blog posts for better recognition.
-
-XXX describe blog as a deep-dive into technical nuance
-
-
