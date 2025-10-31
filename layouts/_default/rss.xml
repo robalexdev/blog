@@ -54,7 +54,7 @@
     <title>Robert Alexander's Tech Blog</title>
     <link>{{ .Permalink }}</link>
     <generator>Hugo</generator>
-    <description>A personal blog about #Tech, #Security, and the #Cloud</description>
+    <description>A personal blog featuring nuanced deep dives into #Tech, #Security, and the #Cloud</description>
     <language>en-us</language>
     <source:blogroll>https://feedland.com/opml?screenname=robalexdev</source:blogroll>
 
