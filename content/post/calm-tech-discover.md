@@ -76,6 +76,8 @@ But the independent web works on a different incentive structure and is resistan
 Humans inherently create, connect, and share: we always have and we always will.
 If you choose software that works in your interest you'll find that it's possible to make meaningful online connections without mental hazard.
 
+Check out [StreetPass](https://streetpass.social/) and [Blog Quest](https://github.com/robalexdev/blog-quest) to discover a decentralized, independent Internet that puts you in control.
+
 {{< rawhtml >}}
 <br />
 <br />
