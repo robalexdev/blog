@@ -1,21 +1,24 @@
-<h3 class="post-listing">
-<a href="{{ .Permalink }}">
-{{ .Title }}</a>
-
-    <div class="cat-tags">
-      {{ if .Params.isPopular}}
-      <span title="Popular post" class="cat-tag popular">★ Popular</span>
-      {{ end }}
-      {{ range .Params.categories }}
-      <a href="{{ absURL (printf "%s%s%s" "/blog/categories/" (. | urlize) "/" ) }}">
-      <span class="cat-tag">
-        {{ . }}
-      </span>
-      </a>
-      {{ end }}
-    </div>
-{{ .Date | time.Format "Jan 2006" }}
-<span class="sep">
-{{ .Params.Summary }}
-</span>
-</h3>
+<article class="h-entry">
+  <h3 class="post-listing">
+  <a href="{{ .Permalink }}" class="p-name u-url">
+  {{ .Title }}</a>
+  <div class="cat-tags">
+    {{ if .Params.isPopular}}
+    <span title="Popular post" class="cat-tag popular">★ Popular</span>
+    {{ end }}
+    {{ range .Params.categories }}
+    <a href="{{ absURL (printf "%s%s%s" "/blog/categories/" (. | urlize) "/" ) }}">
+      <span class="cat-tag p-category">
+      {{ . }}
+    </span>
+    </a>
+    {{ end }}
+  </div>
+  </h3>
+  <p class="p-summary">
+  {{ .Params.Summary }}
+  </p>
+  <p class="dt-published" datetime="{{ .Date | time.Format "2006-01-02T15:04:05Z" }}" style="font-size: 0.8em">
+    {{ .Date | time.Format "Jan 2006" }}
+  </p>
+</article>
