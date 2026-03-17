@@ -137,7 +137,7 @@ fetchAndTimeHeader("zero?r=" + uniqueId, "x-timer").then((tsHeader) => {
   }
 
   serverDelay['fastly'] = durationMilliseconds;
-  timestamps['fastly'] = new Date(unixStartTimeSeconds);
+  timestamps['fastly'] = new Date(unixStartTimeSeconds*1000);
   return;
 });
 
@@ -184,6 +184,7 @@ const fastlyWait = function() {
 setTimeout(fastlyWait, 80);
 
 const offsetComparedDiv = document.querySelector("#the-delta");
+const combinedClockDiv = document.querySelector("#the-combo-clock");
 
 const bothWait = function() {
   const httpOffset = offsets['http'];
@@ -193,6 +194,15 @@ const bothWait = function() {
     return;
   } else if (httpOffset !== undefined && fastlyOffset !== undefined) {
     offsetComparedDiv.innerText = "Offsets are " + (httpOffset - fastlyOffset)/1000 + " seconds apart";
+
+    if (!! combinedClockDiv) {
+      var comboOffset = (httpOffset + fastlyOffset) / 2;
+      setInterval(() => {
+          const local = new Date();
+          const now = new Date(local.getTime() + comboOffset);
+          combinedClockDiv.innerText = now.toLocaleTimeString();
+      }, 50);
+    }
   } else {
     setTimeout(bothWait, 100);
   }
