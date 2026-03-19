@@ -6,6 +6,7 @@
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self' 'unsafe-inline' https://alexsci.goatcounter.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://cdn.jsdelivr.net;"/>
+    <meta http-equiv="X-Frame-Options" content="DENY">
 
     <link rel="alternate" type="application/rss+xml" title="Robert Alexander's Technology Blog" href="https://alexsci.com/blog/rss.xml">
 
@@ -15,10 +16,6 @@
     <link rel="me" href="https://github.com/robalexdev/">
     <link rel="me" href="https://alexsci.com/">
     <link rel="me" href="https://www.robalexdev.com/">
-
-    <link rel="webmention" href="https://webmention.io/alexsci.com_blog_/webmention">
-
-    <link rel="prefetch" href="https://alexsci.com/blog/">
 
     <title>{{ block "title" . }}
       {{ .Site.Title }}
