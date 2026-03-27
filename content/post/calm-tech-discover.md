@@ -4,6 +4,7 @@ date: 2025-12-06
 slug: calm-tech-discover
 summary: Blog Quest and StreetPass help you discover the independent web
 params:
+  isPopular: true
   categories:
   - RSS
   - Blogging

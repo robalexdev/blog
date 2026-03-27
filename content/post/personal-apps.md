@@ -5,7 +5,6 @@ date: 2024-02-25
 summary: Why we need more to-do apps
 params:
   guid: 8e571d6e-0895-46af-9437-e851a23d0dc9
-  isPopular: true
   categories:
   - Software
 ---
