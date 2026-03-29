@@ -23,6 +23,7 @@ Presented here in no particular order and on no particular schedule.
 
 This collection covers UUIDs, especially collisions, guessability, and implementation quirks.
 
-* [**Why UUIDs won't protect your secrets**](/uuids-and-idor/) -- UUIDs and Indirect Object Reference -- *2025-10-19*
-* [**Oops, my UUIDs collided**](/uuid-oops/) -- Why UUID collisions happen in practice -- *2025-10-31*
+* [**Why UUIDs won't protect your secrets**](/uuids-and-idor/) -- UUIDs and Indirect Object Reference -- *October 2025*
+* [**Oops, my UUIDs collided**](/uuid-oops/) -- Why UUID collisions happen in practice -- *October 2025*
+* [**GUID reuse in WordPress**](/guid-reuse-wordpress/) -- Surprising collisions of WordPress post GUIDs -- *March 2026*
 
