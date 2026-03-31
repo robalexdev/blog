@@ -184,29 +184,18 @@ const fastlyWait = function() {
 setTimeout(fastlyWait, 80);
 
 const offsetComparedDiv = document.querySelector("#the-delta");
-const combinedClockDiv = document.querySelector("#the-combo-clock");
-
 const bothWait = function() {
   const httpOffset = offsets['http'];
   const fastlyOffset = offsets['fastly'];
 
-  if (! offsetComparedDiv) {
-    return;
-  } else if (httpOffset !== undefined && fastlyOffset !== undefined) {
+  if (httpOffset !== undefined && fastlyOffset !== undefined) {
     offsetComparedDiv.innerText = "Offsets are " + (httpOffset - fastlyOffset)/1000 + " seconds apart";
-
-    if (!! combinedClockDiv) {
-      var comboOffset = (httpOffset + fastlyOffset) / 2;
-      setInterval(() => {
-          const local = new Date();
-          const now = new Date(local.getTime() + comboOffset);
-          combinedClockDiv.innerText = now.toLocaleTimeString();
-      }, 50);
-    }
   } else {
     setTimeout(bothWait, 100);
   }
 };
 
-setTimeout(bothWait, 100);
+if (offsetComparedDiv) {
+  setTimeout(bothWait, 100);
+}
 
