@@ -46,9 +46,9 @@ const fetchAndTimeHeader = function(url, headerName) {
 /**
 
     HTTP Date header clock synchronization
-
-    Make sure the server provides the current time on 404 Error
-    Make sure the server actually has the right time
+    This will only be accurate if:
+    - the server provides the current time on 404 Error
+    - the server actually has the right time
     Ideally, the server should know it is acting as a time server and provide SLAs
 */
 
@@ -58,7 +58,7 @@ const accuracyDiv = document.querySelector("#the-accuracy");
 
 fetchAndTimeHeader("does-not-exist-" + uniqueId, "date").then((tsHeader) => {
   var timestamp = new Date(tsHeader);
-  // The timestamp may be rounded down, add 500ms to compensate
+  // The timestamp is rounded downward, add 500ms to compensate
   timestamps['http'] = new Date(timestamp.getTime() + 500);
   return;
 });
