@@ -8,50 +8,59 @@
       content="default-src 'self' 'unsafe-inline' https://alexsci.goatcounter.com https://alexsci.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://gc.zgo.at https://cdn.jsdelivr.net;"/>
     <link rel="alternate" type="application/rss+xml" title="Robert Alexander's Technology Blog" href="https://alexsci.com/blog/rss.xml">
 
-    <title>Synchronizing web clocks</title>
-
-
+    <title>Static hosted synchronizing web clocks</title>
 <style>
 body {
   margin: auto;
   max-width: 40em;
 }
-p, h1, h2 {
+h1, h2 {
   text-align: center;
 }
 h2 {
   margin-top: 3em;
 }
 .the-time {
-    font-size: 2em;
-    text-align: center;
+  font-size: 2em;
+  text-align: center;
 }
 .the-offset {
-    text-align: center;
+  text-align: center;
 }
 .the-accuracy {
-    font-size: 0.8em;
-    padding-bottom: 1em;
-    text-align: center;
+  font-size: 0.8em;
+  padding-bottom: 1em;
+  text-align: center;
 }
+#debug {
+  font-size: 0.8em;
+  border: 1px dashed #333;
+  padding: 1em;
+}
+
 </style>
 
-<h1>Synchronizing serverless web clocks</h1>
+<h1>Static hosted synchronizing web clocks</h1>
 
-<h2>HTTP Date header clock</h2>
+<div id="http-clock">
+  <h2>HTTP Date header clock</h2>
+  <div class="the-time">Loading...</div>
+  <div class="the-offset"><noscript>If you enable JavaScript the time will appear here</noscript>...</div>
+  <div class="the-accuracy">...</div>
+</div>
 
-<div class="the-time" id="the-time">Loading...</div>
-<div class="the-offset" id="the-offset"><noscript>If you enable JavaScript the time will appear here</noscript>...</div>
-<div class="the-accuracy" id="the-accuracy">...</div>
+<div id="fastly-clock">
+  <h2>Clock using Fastly X-Timer header</h2>
 
-<h2>Fastly X-Timer header clock</h2>
+  <div class="the-time">Loading...</div>
+  <div class="the-offset"><noscript>If you enable JavaScript the time will appear here</noscript>...</div>
+  <div class="the-accuracy">...</div>
+</div>
 
-<div class="the-time" id="the-time-2">Loading...</div>
-<div class="the-offset" id="the-offset-2"><noscript>If you enable JavaScript the time will appear here</noscript>...</div>
-<div class="the-accuracy" id="the-accuracy-2">...</div>
+<!--
+<div id="debug"></div>
+-->
 
-<h2>Comparing results</h2>
+<script src="offset.js"></script>
+<script src="clock.js"></script>
 
-<p id="the-delta">...</p>
-
-<script src="clock.js" defer></script>
