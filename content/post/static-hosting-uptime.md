@@ -219,3 +219,12 @@ If you need to use it, you could add a CDN of your own on top.
 Many CDNs are able to serve your websites even when the origin is down, thus hiding availability problems.
 This adds additional complexity, can impact privacy, and may carry extra costs.
 
+{{< rawhtml >}}
+<p>
+<small>
+This post includes affiliate links to UptimeRobot.
+</small>
+</p>
+{{< /rawhtml >}}
+
+
