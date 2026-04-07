@@ -19,7 +19,7 @@ figure {
 </style>
 {{< /rawhtml >}}
 
-Many software developers feel we are at a source control inflection point.
+Many software developers feel we are at a software forge inflection point.
 GitHub has reigned for over fifteen years, and we may be in the early days of an exodus.
 Developers have become increasingly disappointed with GitHub's service, features, and overall direction.
 Blame is often directed to the buy-out by Microsoft, migration to Azure, Azure itself, or the intense focus on AI.
@@ -28,11 +28,11 @@ Whatever the underlying reason, people are thinking about switching.
 This post measures the static website hosting uptime of various alternatives.
 
 
-## Why host websites from a git repo?
+## Why host websites from a forge?
 
 First, a little background.
 
-Many source control hosting providers support website hosting.
+Many software forge providers support website hosting.
 The core concept is that you can deploy a static website with little more than a git push.
 The ease of use is central to this product: developers just want a static website with minimal fuss.
 Since they already track their source code in a git repo, its easiest to launch a website from the same provider.
