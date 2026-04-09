@@ -4,6 +4,7 @@
 
 const httpClockElem = document.querySelector("#http-clock");
 const fastlyClockElem = document.querySelector("#fastly-clock");
+const cloudflareClockElem = document.querySelector("#cloudflare-clock");
 
 function updateClockDisplay(offset, div) {
   return () => {
@@ -33,9 +34,9 @@ async function loadClock(elem, fn) {
   if (!!offsetDiv && !!offset) {
     if (Math.abs(offset) > error) {
       if (offset < 0) {
-        offsetDiv.innerText = "Your system clock is behind by " + Math.abs(offset/1000).toFixed(3) + " seconds";
+        offsetDiv.innerText = "Your system clock is behind by " + Math.abs(offset/1000).toFixed(2) + " seconds";
       } else {
-        offsetDiv.innerText = "Your system clock is ahead by " + (offset/1000).toFixed(3) + " seconds";
+        offsetDiv.innerText = "Your system clock is ahead by " + (offset/1000).toFixed(2) + " seconds";
       }
     } else {
       offsetDiv.innerText = "Your system clock is synchronized";
@@ -43,10 +44,11 @@ async function loadClock(elem, fn) {
   }
 
   if (!!accuracyDiv && error !== null) {
-    accuracyDiv.innerText = "+/- " + (error/1000).toFixed(3) + " seconds";
+    accuracyDiv.innerText = "+/- " + (error/1000).toFixed(2) + " seconds";
   }
 }
 
 loadClock(httpClockElem, estimateSystemClockOffsetUsingHTTP);
 loadClock(fastlyClockElem, estimateSystemClockOffsetUsingXTimer);
+loadClock(cloudflareClockElem, estimateSystemClockOffsetUsingCF);
 

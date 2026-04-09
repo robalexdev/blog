@@ -11,18 +11,43 @@
     <title>Static hosted synchronizing web clocks</title>
 <style>
 body {
-  margin: auto;
-  max-width: 40em;
+  color: #111;
+  background-color: #ccc;
+  padding: 0em 1em 10em 1em;
 }
-h1, h2 {
+
+.main {
+  margin: auto;
+  max-width: 50em;
+}
+a {
+  color: #104227;
+}
+h1 {
   text-align: center;
 }
-h2 {
-  margin-top: 3em;
+.clock {
+  border-radius: 5em;
+  margin: auto;
+  margin-top: 2em;
+  padding: 2em;
+  background-color: #59C9A5;
+  max-width: 30em;
+  color: #23395B;
+}
+.clock h2 {
+  text-align: center;
+  margin: 0;
+}
+.clock h3 {
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
 }
 .the-time {
-  font-size: 2em;
+  font-size: 2.4em;
   text-align: center;
+  margin: 0.8em;
 }
 .the-offset {
   text-align: center;
@@ -37,21 +62,34 @@ h2 {
   border: 1px dashed #333;
   padding: 1em;
 }
-
+.about {
+  padding-top: 3em;
+}
 </style>
 
-<h1>Static hosted synchronizing web clocks</h1>
+<div class="main">
 
-<div id="http-clock">
-  <h2>HTTP Date header clock</h2>
+<h1>Static-hosted synchronizing web clocks</h1>
+
+<div id="http-clock" class="clock">
+  <h2>HTTP Date Clock</h2>
+  <h3>Time reference: GitHub Pages</h3>
   <div class="the-time">Loading...</div>
   <div class="the-offset"><noscript>If you enable JavaScript the time will appear here</noscript>...</div>
   <div class="the-accuracy">...</div>
 </div>
 
-<div id="fastly-clock">
-  <h2>Clock using Fastly X-Timer header</h2>
+<div id="fastly-clock" class="clock">
+  <h2>X-Timer Clock</h2>
+  <h3>Time reference: Fastly</h3>
+  <div class="the-time">Loading...</div>
+  <div class="the-offset"><noscript>If you enable JavaScript the time will appear here</noscript>...</div>
+  <div class="the-accuracy">...</div>
+</div>
 
+<div id="cloudflare-clock" class="clock">
+  <h2>Cloudflare Response Header Transform Rules Clock</h2>
+  <h3>Time reference: Cloudflare</h3>
   <div class="the-time">Loading...</div>
   <div class="the-offset"><noscript>If you enable JavaScript the time will appear here</noscript>...</div>
   <div class="the-accuracy">...</div>
@@ -60,6 +98,60 @@ h2 {
 <!--
 <div id="debug"></div>
 -->
+
+<div class="about">
+
+<h2>What is this?</h2>
+
+<p>
+Web servers provide a timestamp in the HTTP Date header field or in custom headers.
+This web page generates a clock from those values, providing an accurate time even when your system clock is set to an incorrect time.
+</p>
+
+<p>
+<b>UTC</b> and <b>UTC(NIST)</b> are well-trusted time-references which provide extremely accurate timekeeping.
+You'd typically synchronize with these references using protocols like NTP.
+</p>
+
+<p>
+This webpage shows an alternate method which synchronizes over HTTP.
+This is similar to <a href="https://time.gov">time.gov/</a>, although a different approach is used to measure HTTP response timing.
+While this alternate approach should provide better synchronization, the NIST reference time is more accurate.
+</p>
+
+<p>
+
+
+
+<b>UTC(GitHub Pages)</b> takes the HTTP Date response header from a request to the 
+<a href="https://docs.github.com/pages">GitHub Pages static web hosting service</a>.
+The request targets a unique non-existent file, which should bypass caches and generate a fresh 404 Not Found response.
+Since the Date header is rounded down to a whole number of seconds, the accuracy is at most 500ms.
+</p>
+
+<p>
+<b>UTC(GitHub Pages)</b> takes the HTTP Date response header from a request to the
+<a href="https://docs.github.com/pages">GitHub Pages static web hosting service</a>.
+The request targets a unique non-existent file, which should bypass caches and generate a fresh 404 Not Found response.
+Since the Date header is rounded down to a whole number of seconds, the accuracy is at most 500ms.
+</p>
+
+<p>
+UTC(GitHub Pages) and UTC(Fastly) are 
+
+<h2>Why are the times different?</h2>
+
+<p>
+Unfortunately, the two time sources are not always synchronized with eachother.
+In testing, I've seen offsets by a full one second.
+Larger offsets seem possible.
+</p>
+
+</div>
+</div>
+
+
+
 
 <script src="offset.js"></script>
 <script src="clock.js"></script>

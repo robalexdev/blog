@@ -28,13 +28,14 @@ function done() {
   resourceObserver.disconnect();
 }
 
-const fetchTimeHeader = function(url, headerName) {
-  dbg("Fetching " + url + " to get " + headerName + " header");
+const fetchTime = function(url) {
+  dbg("Fetching " + url);
   return fetch(
     new Request(url),
-    { method: "HEAD" },
-  ).then(
-    async (response) => response.headers.get(headerName)
+    {
+      method: "HEAD",
+      cache:  "no-store",
+    },
   );
 };
 
@@ -47,12 +48,15 @@ function uniq() {
   return uniqueId;
 }
 
-async function estimateSystemClockOffset(pathPrefix, headerName, fHeader) {
-  const path = pathPrefix + uniq();
+async function estimateSystemClockOffset(pathPrefix, addRandomSuffix, fHeader) {
+  var path = pathPrefix;
+  if (addRandomSuffix) {
+    path += uniq();
+  }
   const waitForTiming = new Promise((resolve, reject) => {
     resourceTimingCallbacks[path] = resolve;
   });
-  const [serverTimestamp, delay, extraError] = fHeader(await fetchTimeHeader(path, headerName));
+  const [serverTimestamp, delay, extraError] = fHeader(await fetchTime(path));
   dbg("Server Timestamp: " + serverTimestamp);
   if (serverTimestamp === null) {
     return [null, null, null];
@@ -92,8 +96,9 @@ function calculateOffset(timing, serverTimestamp, serverDelay, extraError) {
 async function estimateSystemClockOffsetUsingHTTP() {
   const result = await estimateSystemClockOffset(
     "does-not-exist-",
-    "date",
-    (ts) => { 
+    true,
+    (r) => { 
+      const ts = r.headers.get("date");
       // The Date header timestamp is rounded downward
       // add 500ms to compensate
       const timestamp = new Date(ts).getTime() + 500;
@@ -108,9 +113,10 @@ async function estimateSystemClockOffsetUsingHTTP() {
 // See: https://www.fastly.com/documentation/reference/http/http-headers/X-Timer/
 async function estimateSystemClockOffsetUsingXTimer() {
   const result = await estimateSystemClockOffset(
-    "zero?r=",
-    "x-timer",
-    (headerValue) => { 
+    "zero",
+    false,
+    (r) => { 
+      const headerValue = r.headers.get("x-timer");
       if (! headerValue) {
         return [ null, null, null ];
       }
@@ -128,5 +134,30 @@ async function estimateSystemClockOffsetUsingXTimer() {
     },
   );
   dbg("X-Timer results: " + result);
+  return result;
+}
+
+async function estimateSystemClockOffsetUsingCF() {
+  const result = await estimateSystemClockOffset(
+    "zero",
+    false,
+    (r) => { 
+
+      const headerValue = r.headers.get("x-alexsci-timer");
+      if (! headerValue) {
+        return [ null, null, null ];
+      }
+      const parts = headerValue.split(" ");
+      const timestampMSecs = Number(parts[0]) * 1000 + Number(parts[1]);
+      const edgeMSecs = Number(parts[2]);
+
+      if (timestampMSecs < 1700000000000) {
+        return [ null, null, null ];
+      }
+
+      return [ timestampMSecs, edgeMSecs, 1 ];
+    },
+  );
+  dbg("CF results: " + result);
   return result;
 }
