@@ -49,6 +49,6 @@ async function loadClock(elem, fn) {
 }
 
 loadClock(httpClockElem, estimateSystemClockOffsetUsingHTTP);
-loadClock(fastlyClockElem, estimateSystemClockOffsetUsingXTimer);
+//loadClock(fastlyClockElem, estimateSystemClockOffsetUsingXTimer);
 loadClock(cloudflareClockElem, estimateSystemClockOffsetUsingCF);
 
